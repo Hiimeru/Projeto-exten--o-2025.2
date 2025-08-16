@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Pegada Verde - Calculadora de Carbono</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-leaf leaf-icon"></i>Minha Pegada Verde</h1>
+            <p class="subtitle">Projeto de Extensão em Análise e Desenvolvimento de Sistemas</p>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <p>🌍 Esta calculadora utiliza dados científicos adaptados à realidade brasileira, considerando médias regionais de emissão de carbono. Os cálculos são baseados em fontes do Ministério de Minas e Energia (MME), EMBRAPA e estudos internacionais revisados por pares.</p>
+                <p>📊 Selecione sua região para obter uma estimativa mais precisa da sua pegada de carbono.</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" data-target="calculator">Calculadora</div>
+                <div class="tab" data-target="result">Resultado</div>
+            </div>
+
+            <div class="calculator-section active" id="calculator">
+                <div class="form-group">
+                    <label for="region"><i class="fas fa-map-marker-alt"></i> Região do Brasil</label>
+                    <select id="region">
+                        <option value="sul">Sul (RS, SC, PR)</option>
+                        <option value="sudeste">Sudeste (SP, RJ, MG, ES)</option>
+                        <option value="centro">Centro-Oeste (DF, GO, MT, MS)</option>
+                        <option value="nordeste">Nordeste (BA, PE, CE, etc)</option>
+                        <option value="norte">Norte (AM, PA, AC, etc)</option>
+                    </select>
+
+                    <div class="region-info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Importante:</strong> A matriz energética varia por região. Regiões Sul e Sudeste têm maior uso de hidrelétricas (menor emissão), enquanto Norte e Nordeste usam mais termelétricas (maior emissão).
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="transport"><i class="fas fa-car"></i> Transporte</label>
+                    <div class="input-group">
+                        <i class="fas fa-road"></i>
+                        <input type="number" id="transport" min="0" placeholder="Km percorridos de carro por dia">
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-gas-pump"></i>
+                        <select id="fuel-type">
+                            <option value="gasoline">Gasolina</option>
+                            <option value="ethanol">Etanol</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="flex">Flex (50/50)</option>
+                            <option value="eletric">Elétrico</option>
+                            <option value="hybrid">Híbrido</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="energy"><i class="fas fa-bolt"></i> Energia</label>
+                    <div class="input-group">
+                        <i class="fas fa-plug"></i>
+                        <input type="number" id="energy" min="0" placeholder="Consumo de energia (kWh/mês)">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label><i class="fas fa-utensils"></i> Alimentação</label>
+
+                    <div class="diet-details">
+                        <p><strong>Definições claras:</strong></p>
+                        <ul>
+                            <li><i class="fas fa-cow"></i> Carne vermelha: bovina, suína, cordeiro</li>
+                            <li><i class="fas fa-drumstick-bite"></i> Aves: frango, peru, pato</li>
+                            <li><i class="fas fa-fish"></i> Peixes: todos os tipos de peixe e frutos do mar</li>
+                            <li><i class="fas fa-seedling"></i> Proteínas vegetais: legumes, tofu, grãos</li>
+                        </ul>
+                    </div>
+
+                    <div class="diet-options">
+                        <div class="diet-option" data-value="high-all">
+                            <i class="fas fa-meat"></i>
+                            <div>Alto consumo (7+ refeições c/ carne/semana)</div>
+                            <small>Todos os tipos de carne</small>
+                        </div>
+
+                        <div class="diet-option" data-value="high-red">
+                            <i class="fas fa-cow"></i>
+                            <div>Foco em carne vermelha (4+ vezes/semana)</div>
+                        </div>
+
+                        <div class="diet-option" data-value="medium-mixed">
+                            <i class="fas fa-drumstick-bite"></i>
+                            <div>Misto (3-6 refeições/semana)</div>
+                            <small>Carne vermelha, aves e peixe</small>
+                        </div>
+
+                        <div class="diet-option" data-value="low-fish">
+                            <i class="fas fa-fish"></i>
+                            <div>Principalmente peixe (1-2 vezes/semana)</div>
+                        </div>
+
+                        <div class="diet-option" data-value="vegetarian">
+                            <i class="fas fa-carrot"></i>
+                            <div>Vegetariano</div>
+                            <small>Ovos/laticínios, sem carne</small>
+                        </div>
+
+                        <div class="diet-option" data-value="vegan">
+                            <i class="fas fa-seedling"></i>
+                            <div>Vegano</div>
+                            <small>Sem produtos animais</small>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="diet" value="medium-mixed">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn" id="calculate-btn">
+                        <i class="fas fa-calculator"></i> Calcular Minha Pegada
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-section" id="result">
+                <div class="result-box">
+                    <h2>Sua Pegada de Carbono Anual</h2>
+                    <div class="carbon-value">0.0 ton CO₂</div>
+                    <p>Média brasileira: 2.0 ton CO₂ por pessoa</p>
+
+                    <div class="progress-bar">
+                        <div class="progress" id="carbon-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="comparison">
+                    <div class="comparison-item">
+                        <i class="fas fa-tree fa-2x"></i>
+                        <h3>Árvores necessárias</h3>
+                        <div class="comparison-value" id="trees-value">0</div>
+                        <p>Para compensar suas emissões</p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <i class="fas fa-gas-pump fa-2x"></i>
+                        <h3>Litros de gasolina</h3>
+                        <div class="comparison-value" id="gasoline-value">0L</div>
+                        <p>Equivalente em emissões</p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <i class="fas fa-globe-americas fa-2x"></i>
+                        <h3>Viagens SP-Rio</h3>
+                        <div class="comparison-value" id="trips-value">0</div>
+                        <p>De carro (ida e volta)</p>
+                    </div>
+                </div>
+
+                <div class="contribution-chart">
+                    <h3><i class="fas fa-chart-pie"></i> Contribuição por Área</h3>
+                    <div class="chart-container">
+                        <canvas id="contribution-chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="tips">
+                    <h3><i class="fas fa-lightbulb"></i> Dicas para Reduzir sua Pegada</h3>
+                    <ul id="tips-list">
+                        <li>Reduza seu uso de carro em 20%: <strong>-0.8 ton CO₂/ano</strong></li>
+                        <li>Troque lâmpadas por LED: <strong>-0.2 ton CO₂/ano</strong></li>
+                        <li>Reduza consumo de carne para 3x/semana: <strong>-0.5 ton CO₂/ano</strong></li>
+                        <li>Desligue eletrônicos em standby: <strong>-0.1 ton CO₂/ano</strong></li>
+                    </ul>
+                </div>
+
+                <div class="actions">
+                    <button class="btn" id="recalculate-btn">
+                        <i class="fas fa-redo"></i> Recalcular
+                    </button>
+                    <button class="btn btn-secondary" id="save-btn">
+                        <i class="fas fa-download"></i> Salvar Resultado
+                    </button>
+                    <button class="btn btn-secondary" id="share-btn">
+                        <i class="fas fa-share-alt"></i> Compartilhar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Projeto de Extensão em Análise e Desenvolvimento de Sistemas - Eixo Sustentável</p>
+            <p>Desenvolvido conforme Resolução CNE/CES nº 7/2018 | Alinhado aos ODS da ONU</p>
+        </div>
+    </div>
+
+    <!-- Biblioteca Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

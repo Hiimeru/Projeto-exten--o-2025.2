@@ -1,0 +1,376 @@
+/* Estilos CSS serão colocados aqui */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --primary: #2ecc71;
+  --secondary: #27ae60;
+  --dark: #2c3e50;
+  --light: #ecf0f1;
+  --accent: #e74c3c;
+}
+
+body {
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+  color: var(--light);
+  line-height: 1.6;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(44, 62, 80, 0.95);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+header {
+  background: var(--dark);
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(39, 174, 96, 0.2)"/></svg>');
+  background-size: cover;
+  z-index: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.leaf-icon {
+  color: var(--primary);
+  margin-right: 10px;
+}
+
+.content {
+  padding: 30px;
+}
+
+.intro {
+  margin-bottom: 30px;
+  background: rgba(236, 240, 241, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.intro p {
+  margin-bottom: 15px;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--secondary);
+}
+
+.tab {
+  padding: 12px 20px;
+  cursor: pointer;
+  background: rgba(236, 240, 241, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  background: var(--secondary);
+  font-weight: bold;
+}
+
+.calculator-section,
+.result-section {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.calculator-section.active,
+.result-section.active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.diet-details {
+  background: rgba(52, 152, 219, 0.1);
+  border-left: 4px solid #3498db;
+  padding: 15px;
+  border-radius: 0 8px 8px 0;
+  margin: 15px 0;
+  font-size: 0.9rem;
+}
+
+.diet-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.diet-option {
+  background: rgba(236, 240, 241, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+
+.diet-option:hover {
+  background: rgba(52, 152, 219, 0.2);
+}
+
+.diet-option.selected {
+  background: var(--secondary);
+  font-weight: bold;
+}
+
+.diet-option i {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-group i {
+  background: var(--dark);
+  padding: 12px 15px;
+  border-radius: 5px 0 0 5px;
+  color: var(--primary);
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  background: rgba(236, 240, 241, 0.1);
+  color: white;
+  border-radius: 0 5px 5px 0;
+  font-size: 1rem;
+}
+
+.btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background: var(--secondary);
+}
+
+.result-box {
+  background: rgba(236, 240, 241, 0.1);
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.carbon-value {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin: 20px 0;
+}
+
+.comparison {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.comparison-item {
+  background: rgba(236, 240, 241, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+  min-width: 150px;
+  margin: 10px;
+}
+
+.comparison-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin: 10px 0;
+}
+
+.tips {
+  background: rgba(231, 76, 60, 0.1);
+  border-left: 4px solid var(--accent);
+  padding: 20px;
+  border-radius: 0 10px 10px 0;
+  margin: 30px 0;
+}
+
+.tips h3 {
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+
+.tips ul {
+  padding-left: 20px;
+}
+
+.tips li {
+  margin-bottom: 10px;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-secondary {
+  background: rgba(236, 240, 241, 0.1);
+}
+
+.btn-secondary:hover {
+  background: rgba(236, 240, 241, 0.2);
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--dark);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.progress-bar {
+  height: 10px;
+  background: rgba(236, 240, 241, 0.1);
+  border-radius: 5px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 5px;
+  transition: width 0.5s ease;
+}
+
+.contribution-chart {
+  margin: 30px 0;
+  padding: 20px;
+  background: rgba(236, 240, 241, 0.05);
+  border-radius: 10px;
+}
+
+.chart-container {
+  height: 300px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .container {
+    border-radius: 10px;
+  }
+
+  header {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .comparison-item {
+    width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tab {
+    border-radius: 0 !important;
+  }
+
+  .comparison-item {
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
